@@ -1,2 +1,0 @@
-# llosinskas-gmail.com
-TurbineFrancisPython
