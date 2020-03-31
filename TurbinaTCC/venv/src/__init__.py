@@ -1,2 +1,6 @@
+"""Programa para o cálculo da banca didática onde essa é a interface do programa"""
+"""@author: Lucas Losinskas
+    date: 03/2020"""
 
-print('Hello World!!!')
+from interface import
+
