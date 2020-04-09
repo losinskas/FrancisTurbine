@@ -18,14 +18,18 @@ namespace ConsoleApp3.Classe
         public double nqar_11 { get; set; }         // Rotação específica da máquina [rpm]
         public double vazaoRegular { get; set; }    // Vazão regular [m³/s]
         public double nqar { get; set; }            // Rotação especifíca da máquina [rpm]
-
+        public double potMaxEixo { get; set; }      // Potência máxima no eixo [kW]
+        public double rendMeca { get; set; }        // Rendimento mecânico
+        public double rendInterno { get; set; }     // Rendimento interno
         public string report { get; set; }          // String de relatório 
-         public InputParms(double altura, double rotacao, double vazao, double rendimentoV)
+         public InputParms(double altura, double rotacao, double vazao, double rendimentoV, double rendMeca, double rendInterno)
         {
             this.altura = altura;
             this.rotacaoRPM = rotacao;
             this.vazao = vazao;
             this.rendimentoV = rendimentoV;
+            this.rendInterno = rendInterno;
+            this.rendMeca = rendMeca;
 
             this.rpmToRps(rotacao);
             this.hToY(altura);
@@ -43,8 +47,10 @@ namespace ConsoleApp3.Classe
             this.report += $"Vazão Regular: {vazaoRegular}[m³/s]\n";
             this.n_qar();
             this.report += $"A rotação especifíca nqar: {nqar}[rpm]\n";
+            this.pot_max_eixo();
+            this.report += $"A potência máxima no eixo P_max: {potMaxEixo} [kW]\n";
 
-            OutputParmsGeometry output = new OutputParmsGeometry(nqar, altura, rotacaoRPM, vazaoRegular);
+            OutputParmsGeometry output = new OutputParmsGeometry(nqar, altura, rotacaoRPM, vazaoRegular, rendimentoV);
             this.report += output.report;
 
 
@@ -85,7 +91,10 @@ namespace ConsoleApp3.Classe
         {
             this.nqar = 3 * rotacaoRPM * (Math.Pow(vazaoRegular, 0.5) / Math.Pow(altura, 0.75));
         }
-
+        public void pot_max_eixo()
+        {
+            this.potMaxEixo = (9.81 * vazaoR * altura) / (rendMeca * rendInterno);
+        }
 
     }
 }
