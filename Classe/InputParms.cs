@@ -21,7 +21,11 @@ namespace ConsoleApp3.Classe
         public double potMaxEixo { get; set; }      // Potência máxima no eixo [kW]
         public double rendMeca { get; set; }        // Rendimento mecânico
         public double rendInterno { get; set; }     // Rendimento interno
+        public double tomaMin { get; set; }         // Toma mínimo
+        public double toma { get; set; }            // Toma 
+        public double hsum { get; set; }            // hsum max 
         public string report { get; set; }          // String de relatório 
+       
          public InputParms(double altura, double rotacao, double vazao, double rendimentoV, double rendMeca, double rendInterno)
         {
             this.altura = altura;
@@ -47,6 +51,9 @@ namespace ConsoleApp3.Classe
             this.report += $"Vazão Regular: {vazaoRegular}[m³/s]\n";
             this.n_qar();
             this.report += $"A rotação especifíca nqar: {nqar}[rpm]\n";
+            this.tomae();
+            this.report += $"O valor do toma: {toma} \n";
+            
             this.pot_max_eixo();
             this.report += $"A potência máxima no eixo P_max: {potMaxEixo} [kW]\n";
 
@@ -95,6 +102,15 @@ namespace ConsoleApp3.Classe
         {
             this.potMaxEixo = (9.81 * vazaoR * altura) / (rendMeca * rendInterno);
         }
+        public void toma_min()
+        {
+
+        }
+        public void tomae()
+        {
+            this.toma = 0.0245 * Math.Exp(0.00833 * nqar); 
+        }
+
 
     }
 }

@@ -20,7 +20,7 @@ namespace ConsoleApp3
     {
         static void Main(string[] args)
         {
-            InputParms input = new InputParms(21.7,450,3.8,0.96, 0.95,0.91);
+            InputParms input = new InputParms(60,360,15,0.96, 0.99,0.91);
             Console.WriteLine(input.report);
 
             Excel excel = new Excel(input);
